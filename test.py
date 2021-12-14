@@ -34,14 +34,20 @@ def loop(keys, mouse):
         delta.x += change
     if keys[key.S]:
         delta.x -= change
-    delta = RotationMatrix().fromQuaternion(a.scene.activeCamera.rot.inverse()).applyTo(delta)
+    if keys[key.Q]:
+        delta.y += change
+    if keys[key.E]:
+        delta.y -= change
+    dir = m.copy()
+    dir.z = 0
+    moveDir = Quaternion().fromVecEuler(dir) 
+    delta = RotationMatrix().fromQuaternion(moveDir.inverse()).applyTo(delta)
     a.scene.activeCamera.pos += delta
     
     m.y += mouse["dx"] / 100
     m.z += -mouse["dy"] / 100
     
     a.scene.activeCamera.rot.fromVecEuler(m)
-    a.scene.activeCamera.pos.y = 0
     
     a.width = 1000
     a.height = 1000
