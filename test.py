@@ -26,7 +26,7 @@ g = ParametricGraph3D()
 g.material = MaterialColor(ColorRGB1(0, 0, 1))
 g.equation = ("T", "sqrt(T)", "0")
 g.range = (0, 2)
-g.step = 0.1
+g.step = 0.01
 g.unpackGraph()
 a.scene.objects.append(g)
 
