@@ -75,6 +75,7 @@ class Vector(list):
             for i in range(len(self)):
                 self[i] //= v[i]
         return self
+    
     def __abs__(self):
         return sqrt(sum(i**2 for i in self))
     def __neg__(self):
@@ -91,6 +92,9 @@ class Vector3(Vector):
     def __init__(self, x, y, z):
         super().__init__(x, y, z)
     
+    def copy(self):
+        return Vector3(*self)
+
     # Cross Product
     def cross(self, other):
         return Vector3(self[1]*other[2] - self[2]*other[1], self[2]*other[0] - self[0]*other[2], self[0]*other[1] - self[1]*other[0])
@@ -99,5 +103,6 @@ class Vector3(Vector):
 class Vector2(Vector):
     def __init__(self, x, y):
         super().__init__(x, y)
-
-
+    
+    def copy(self):
+        return Vector2(*self)
