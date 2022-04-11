@@ -50,7 +50,6 @@ class Matrix(FinalLengthList):
     def __matmul__(self, other):
         n = self.__width
         return Matrix(*[[sum(self[y][i] * other[i][x] for i in range(n)) for x in range(other.__width)] for y in range(self.__height)])
-    
 
     def mutliplyMatrixByVector(self, v):
         return Vector(*(v.dot(self[i]) for i in range(len(v))))

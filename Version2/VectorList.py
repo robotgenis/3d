@@ -1,5 +1,4 @@
 
-from operator import itemgetter
 
 class VectorList(list):
     __slots__ = []
@@ -7,7 +6,6 @@ class VectorList(list):
     def __init__(self, *v):
         super().__init__(v)
     
-
     def average(self):
         l =  len(self)
         s = self[0].copy()
@@ -16,8 +14,11 @@ class VectorList(list):
         s /= l
         return s
 
+    def toTuple(self):
+        return tuple(i for v in self for i in v)
+
+
 class VectorList3(VectorList):
     def __init__(self, a, b, c):
         super().__init__(a, b, c)
     
-

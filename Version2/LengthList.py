@@ -33,3 +33,12 @@ class FinalLengthList(LengthList):
     def __setitem__():
         raise Exception("You can't set items a FinalLengthList")
 
+
+class ListWrapperForValue(FinalLengthList):
+    __slots__ = "__val"
+    def __init__(self, val):
+        super().__init__(val)
+        self.__val = val
+    
+    def __getitem__(self, index):
+        return self.__val

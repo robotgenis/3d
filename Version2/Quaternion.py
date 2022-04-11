@@ -19,6 +19,9 @@ class Quaternion(Vector):
             c0 * c1 * s2 - s0 * s1 * c2,
             c0 * c1 * c2 + s0 * s1 * s2
         )
+    @staticmethod
+    def zeros():
+        return Quaternion(0, 0, 0, 0)
     
     def __init__(self, x, y, z, w):
         super().__init__(x, y, z, w)
