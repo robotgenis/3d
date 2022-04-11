@@ -1,26 +1,23 @@
-from math import sqrt
+from math import sqrt, cos, sin
 from operator import itemgetter
+from LengthList import LengthList
+
 def isNumber(x):
     return isinstance(x, (int, float, complex, bool))
 
-class Vector(list):
-    __slots__ = []
-            
+class Vector(LengthList):
+    @staticmethod
+    def zeros(size):
+        return Vector(*(0 for _ in range(size)))
+    @staticmethod
+    def direction(size, axis):
+        return Vector(*(int(axis==i) for i in range(size)))
+
     x = property(itemgetter(0))
     y = property(itemgetter(1))
     z = property(itemgetter(2))
     w = property(itemgetter(3))
 
-    def __init__(self, *v):
-        super().__init__(v)
-    
-    # Representations
-    def __repr__(self):
-        return f"<{', '.join(map(str, self))}>"
-
-    # Resources
-    def copy(self):
-        return Vector(*self)
 
     # Mathmetical
     def __add__(self, v):
@@ -75,7 +72,6 @@ class Vector(list):
             for i in range(len(self)):
                 self[i] //= v[i]
         return self
-    
     def __abs__(self):
         return sqrt(sum(i**2 for i in self))
     def __neg__(self):
@@ -84,16 +80,17 @@ class Vector(list):
     # Dot product
     def dot(self, other):
         return sum(self[i] * other[i] for i in range(len(self)))
-    def __matmul__(self, other):
-        return sum(self[i] * other[i] for i in range(len(self)))
-
 
 class Vector3(Vector):
+    @staticmethod
+    def zeros():
+        return Vector3(0, 0, 0)
+    @staticmethod
+    def direction(axis):
+        return Vector(*(int(axis==i) for i in range(3)))
+
     def __init__(self, x, y, z):
         super().__init__(x, y, z)
-    
-    def copy(self):
-        return Vector3(*self)
 
     # Cross Product
     def cross(self, other):
@@ -101,8 +98,14 @@ class Vector3(Vector):
 
 
 class Vector2(Vector):
+    @staticmethod
+    def zeros():
+        return Vector2(0, 0)
+    @staticmethod
+    def direction(axis):
+        return Vector(*(int(axis==i) for i in range(2)))
+
     def __init__(self, x, y):
         super().__init__(x, y)
+
     
-    def copy(self):
-        return Vector2(*self)
