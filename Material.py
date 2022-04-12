@@ -20,25 +20,3 @@ class MaterialColor(Material):
                 ('v2f', t.toTuple()),
                 ('c3B', self.color * 3)
             )
-
-
-window = pyglet.window.Window()
-
-o = Object3D()
-o.subset.append(VectorList(Vector2(0, 0), Vector2(500, 500), Vector2(0, 500)))
-
-m = MaterialColor()
-
-batch = pyglet.graphics.Batch()
-# a = pyglet.shapes.Triangle(0, 0, 100, 100, 0, 100, batch=batch)
-m.draw(o, batch)
-
-
-@window.event
-def on_draw():
-    # window.clear()
-
-    batch.draw()
-
-
-pyglet.app.run()

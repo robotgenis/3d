@@ -21,4 +21,3 @@ class VectorList(list):
 class VectorList3(VectorList):
     def __init__(self, a, b, c):
         super().__init__(a, b, c)
-    
