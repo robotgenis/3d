@@ -14,9 +14,8 @@ class MaterialColor(Material):
     __slots__ = "color"
     def __init__(self, color):
         self.color = color
-    def draw(self, obj3D, batch):
-        for t in obj3D.subset:
-            batch.add(3, pyglet.graphics.GL_TRIANGLES, None, 
-                ('v2f', t.toTuple()),
-                ('c3B', self.color * 3)
-            )
+    def draw(self, vectorList, batch):
+        batch.add(3, pyglet.graphics.GL_TRIANGLES, None, 
+            ('v2f', vectorList.toTuple()),
+            ('c3B', self.color * 3)
+        )

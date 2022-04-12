@@ -40,3 +40,13 @@ class Quaternion(Vector):
         m[2][1] = 2 * (self[3]*self[0] + self[1]*self[2])
         m[2][2] = 1 - 2*(self[0]*self[0] + self[1]*self[1])
         return m
+    
+    #conjugate
+    def __neg__(self):
+        return Quaternion(-self.x, -self.y, -self.z, self.w)
+
+    def __invert__(self):
+        c = (-self)
+        m = abs(self)
+        m = m*m
+        return Quaternion(c.x / m, c.y / m, c.z / m, c.w / m)
